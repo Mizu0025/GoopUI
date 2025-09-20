@@ -1,2 +1,8 @@
-.aider*
+node_modules/
+.DS_Store
+build/
+dist/
 .env
+.env.example
+progress.md
+instructions.md
