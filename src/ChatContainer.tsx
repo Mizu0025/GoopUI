@@ -5,6 +5,14 @@ import LoadingIndicator from './LoadingIndicator';
 
 function ChatContainer() {
   const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   const sendMessage = (messageText) => {
     // Placeholder for API call
@@ -16,11 +24,14 @@ function ChatContainer() {
 
   return (
     <div className="chat-container">
-      {messages.map((message, index) => (
-        <MessageBubble key={index} message={message} />
-      ))}
+      {isLoading ? (
+        <LoadingIndicator />
+      ) : (
+        messages.map((message, index) => (
+          <MessageBubble key={index} message={message} />
+        ))
+      )}
       <ChatInput onSendMessage={sendMessage} />
-      <LoadingIndicator />
     </div>
   );
 }
