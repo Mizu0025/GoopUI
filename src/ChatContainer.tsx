@@ -6,12 +6,20 @@ import LoadingIndicator from './LoadingIndicator';
 function ChatContainer() {
   const [messages, setMessages] = useState([]);
 
+  const sendMessage = (messageText) => {
+    // Placeholder for API call
+    console.log('Sending message:', messageText);
+
+    // Add the new message to the state
+    setMessages([...messages, messageText]);
+  };
+
   return (
     <div className="chat-container">
       {messages.map((message, index) => (
         <MessageBubble key={index} message={message} />
       ))}
-      <ChatInput />
+      <ChatInput onSendMessage={sendMessage} />
       <LoadingIndicator />
     </div>
   );
