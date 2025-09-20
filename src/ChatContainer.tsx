@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ChatInput from './ChatInput';
 import MessageBubble from './MessageBubble';
 import LoadingIndicator from './LoadingIndicator';
+import ModelSelector from './ModelSelector';
 
 function ChatContainer() {
   const [messages, setMessages] = useState([]);
@@ -27,11 +28,14 @@ function ChatContainer() {
       {isLoading ? (
         <LoadingIndicator />
       ) : (
-        messages.map((message, index) => (
-          <MessageBubble key={index} message={message} />
-        ))
+        <>
+          {messages.map((message, index) => (
+            <MessageBubble key={index} message={message} />
+          ))}
+          <ModelSelector />
+          <ChatInput onSendMessage={sendMessage} />
+        </>
       )}
-      <ChatInput onSendMessage={sendMessage} />
     </div>
   );
 }
