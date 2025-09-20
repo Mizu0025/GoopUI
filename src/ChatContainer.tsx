@@ -4,38 +4,44 @@ import MessageBubble from './MessageBubble';
 import LoadingIndicator from './LoadingIndicator';
 import ModelSelector from './ModelSelector';
 
-function ChatContainer() {
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+interface Message {
+  text: string;
+  sender: 'user' | 'ai';
+}
 
-  useEffect(() => {
-    // Simulate loading data
+function ChatContainer() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedModel, setSelectedModel] = useState<string>('');
+
+  const handleModelChange = (model: string) => {
+    setSelectedModel(model);
+  };
+
+  const sendMessage = (messageText: string) => {
+    const newUserMessage: Message = { text: messageText, sender: 'user' };
+    setMessages(prevMessages => [...prevMessages, newUserMessage]);
+
+    setIsLoading(true);
+
+    // Simulate AI response
     setTimeout(() => {
+      const aiResponse: Message = { text: `(${selectedModel}) AI response to "${messageText}"`, sender: 'ai' };
+      setMessages(prevMessages => [...prevMessages, aiResponse]);
       setIsLoading(false);
     }, 1000);
-  }, []);
-
-  const sendMessage = (messageText) => {
-    // Placeholder for API call
-    console.log('Sending message:', messageText);
-
-    // Add the new message to the state
-    setMessages([...messages, messageText]);
   };
 
   return (
     <div className="chat-container">
-      {isLoading ? (
-        <LoadingIndicator />
-      ) : (
-        <>
-          {messages.map((message, index) => (
-            <MessageBubble key={index} message={message} />
-          ))}
-          <ModelSelector />
-          <ChatInput onSendMessage={sendMessage} />
-        </>
-      )}
+      <ModelSelector onModelChange={handleModelChange} />
+      <div className="message-list">
+        {messages.map((message, index) => (
+          <MessageBubble key={index} message={message} />
+        ))}
+        {isLoading && <LoadingIndicator />}
+      </div>
+      <ChatInput onSendMessage={sendMessage} />
     </div>
   );
 }

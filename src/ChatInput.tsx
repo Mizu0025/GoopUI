@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ChatInputProps {
   onSendMessage: (messageText: string) => void;
 }
 
 function ChatInput({ onSendMessage }: ChatInputProps) {
-  const handleSendMessage = () => {
-    const messageText = document.querySelector('.chat-input input')!.value;
+  const [inputValue, setInputValue] = useState('');
 
-    if (messageText.trim() === '') {
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (inputValue.trim() === '') {
       alert('Please enter a message.');
       return;
     }
-
-    onSendMessage(messageText);
-    document.querySelector('.chat-input input')!.value = '';
+    onSendMessage(inputValue);
+    setInputValue('');
   };
 
   return (
-    <div className="chat-input">
-      <input type="text" placeholder="Type your message..." />
-      <button onClick={handleSendMessage}>Send</button>
-    </div>
+    <form className="chat-input" onSubmit={handleSubmit}>
+      <div className="chat-input-wrapper">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button type="submit"></button>
+      </div>
+    </form>
   );
 }
 
