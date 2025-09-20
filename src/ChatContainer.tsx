@@ -13,6 +13,7 @@ function ChatContainer() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleModelChange = (model: string) => {
     setSelectedModel(model);
@@ -23,13 +24,31 @@ function ChatContainer() {
     setMessages(prevMessages => [...prevMessages, newUserMessage]);
 
     setIsLoading(true);
+    setErrorMessage('');
 
-    // Simulate AI response
-    setTimeout(() => {
-      const aiResponse: Message = { text: `(${selectedModel}) AI response to "${messageText}"`, sender: 'ai' };
+    fetch(`/api/chat?model=${selectedModel}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: messageText }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const aiResponse: Message = { text: data.response, sender: 'ai' };
       setMessages(prevMessages => [...prevMessages, aiResponse]);
       setIsLoading(false);
-    }, 1000);
+    })
+    .catch(error => {
+      console.error('Error fetching AI response:', error);
+      setIsLoading(false);
+      setErrorMessage('Failed to get AI response. Please try again.');
+    });
   };
 
   return (
@@ -40,6 +59,7 @@ function ChatContainer() {
           <MessageBubble key={index} message={message} />
         ))}
         {isLoading && <LoadingIndicator />}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
       <ChatInput onSendMessage={sendMessage} />
     </div>
