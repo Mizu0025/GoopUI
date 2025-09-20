@@ -7,6 +7,12 @@ interface ChatInputProps {
 function ChatInput({ onSendMessage }: ChatInputProps) {
   const handleSendMessage = () => {
     const messageText = document.querySelector('.chat-input input')!.value;
+
+    if (messageText.trim() === '') {
+      alert('Please enter a message.');
+      return;
+    }
+
     onSendMessage(messageText);
     document.querySelector('.chat-input input')!.value = '';
   };
