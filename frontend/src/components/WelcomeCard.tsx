@@ -6,14 +6,9 @@ type WelcomeCardProps = {
 
 const WelcomeCard = ({ welcomeName, showImage, imageSrc }: WelcomeCardProps) => (
   <div className="welcome-card">
-    <div className="welcome-banner">
-      <h2 className="welcome-title">Welcome {welcomeName}!</h2>
-      <p className="welcome-text">
-        Tweak your preferences in the settings modal and start a conversation when you&apos;re ready.
-      </p>
-    </div>
+    <h2 className="welcome-title">Welcome {welcomeName}!</h2>
     {showImage && (
-      <div className="welcome-media">
+      <div className="chat-context">
         <img src={imageSrc} alt="GoopUI mascot" className="welcome-image" />
       </div>
     )}

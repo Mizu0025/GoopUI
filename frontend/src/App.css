@@ -31,7 +31,7 @@
 }
 
 .chat-content {
-  @apply mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-10;
+  @apply mx-auto flex w-full max-w-4xl flex-col gap-5 px-4 py-8;
 }
 
 .system-prompt-card {
@@ -43,27 +43,19 @@
 }
 
 .welcome-card {
-  @apply rounded-3xl border border-blue-500/25 bg-blue-950/60 p-10 text-center shadow-xl shadow-blue-950/50;
-}
-
-.welcome-banner {
-  @apply rounded-3xl border border-sky-500/40 bg-gradient-to-r from-sky-500/20 via-indigo-500/20 to-blue-500/20 p-8 text-left text-blue-50 md:text-center;
+  @apply rounded-3xl border border-blue-500/25 bg-blue-950/60 px-6 py-6 text-center shadow-xl shadow-blue-950/50;
 }
 
 .welcome-title {
-  @apply text-3xl font-semibold;
+  @apply text-3xl font-semibold text-blue-50;
 }
 
-.welcome-text {
-  @apply mt-3 text-base text-blue-100/90;
-}
-
-.welcome-media {
+.chat-context {
   @apply mt-6 flex justify-center;
 }
 
 .welcome-image {
-  @apply w-full max-w-sm rounded-3xl border border-blue-500/30 bg-blue-950/40 p-4 shadow-lg shadow-blue-950/40;
+  @apply w-full max-w-xs rounded-3xl shadow-lg shadow-blue-950/40 md:max-w-sm;
 }
 
 .message-thread {
@@ -110,8 +102,16 @@
   @apply flex h-full flex-col;
 }
 
+.sidebar-topbar {
+  @apply flex items-center justify-between gap-3 md:justify-start;
+}
+
+.sidebar-settings-trigger {
+  @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/30 bg-blue-950/70 text-lg text-blue-100 transition hover:border-sky-400/60 hover:text-sky-100;
+}
+
 .sidebar-header {
-  @apply flex items-center justify-between md:block;
+  @apply mt-6 space-y-1;
 }
 
 .sidebar-title {
@@ -170,21 +170,7 @@
   @apply flex h-7 w-7 items-center justify-center rounded-full border border-blue-500/20 text-blue-300 transition hover:border-rose-400/60 hover:bg-rose-500/20 hover:text-rose-100 focus:outline-none focus:ring-2 focus:ring-rose-400/50;
 }
 
-.sidebar-settings {
-  @apply mt-6 rounded-3xl border border-blue-500/25 bg-blue-950/70 p-4 text-xs text-blue-200 shadow-lg shadow-blue-950/50;
-}
-
-.sidebar-settings-header {
-  @apply flex items-center justify-between;
-}
-
-.sidebar-settings-title {
-  @apply text-sm font-semibold text-blue-100;
-}
-
-.sidebar-settings-button {
-  @apply mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-blue-500/30 bg-transparent px-3 py-2 text-sm font-medium text-blue-200 transition hover:border-sky-400/60 hover:text-sky-100;
-}
+/* legacy sidebar settings styles removed */
 
 .header-bar {
   @apply sticky top-0 z-10 border-b border-blue-500/25 bg-blue-950/80 backdrop-blur;
@@ -250,8 +236,8 @@
   @apply mt-1 w-full bg-transparent text-sm text-blue-100 outline-none;
 }
 
-.composer-actions {
-  @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+.composer-footer {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between;
 }
 
 .composer-send {

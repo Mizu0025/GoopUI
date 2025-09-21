@@ -35,14 +35,24 @@ const Sidebar = ({
       )}
     >
       <div className="sidebar-content">
-        <div className="sidebar-header">
-          <div>
-            <h2 className="sidebar-title">GoopUI</h2>
-            <p className="sidebar-subtitle">Chat with local Ollama</p>
-          </div>
+        <div className="sidebar-topbar">
+          <button
+            type="button"
+            className="sidebar-settings-trigger"
+            onClick={onOpenSettings}
+            aria-label="Open settings"
+            title="Open settings"
+          >
+            ⚙️
+          </button>
           <button type="button" className="sidebar-dismiss" onClick={onCloseHistory}>
             Close
           </button>
+        </div>
+
+        <div className="sidebar-header">
+          <h2 className="sidebar-title">GoopUI</h2>
+          <p className="sidebar-subtitle">Chat with local Ollama</p>
         </div>
 
         <button type="button" onClick={onNewChat} className="sidebar-button">
@@ -104,18 +114,6 @@ const Sidebar = ({
               );
             })
           )}
-        </div>
-
-        <div className="sidebar-settings">
-          <div className="sidebar-settings-header">
-            <h3 className="sidebar-settings-title">Settings</h3>
-            <span aria-hidden="true" className="text-base">
-              ⚙️
-            </span>
-          </div>
-          <button type="button" className="sidebar-settings-button" onClick={onOpenSettings}>
-            Open settings
-          </button>
         </div>
       </div>
     </aside>

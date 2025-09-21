@@ -11,7 +11,6 @@ import {
   submitChat,
 } from "./lib/api";
 import {
-  DEFAULT_SYSTEM_PROMPT,
   TITLE_FALLBACK,
   buildRequestMessages,
   buildTitleFromContent,

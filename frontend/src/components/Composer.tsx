@@ -33,7 +33,7 @@ const Composer = ({
 
   return (
     <footer className="border-t border-blue-500/25 bg-blue-950/80">
-      <div className="mx-auto w-full max-w-4xl px-4 py-6">
+      <div className="mx-auto w-full max-w-4xl px-4 py-5">
         <div className="composer-card">
           {Boolean(modelsError) && (
             <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-3 py-2 text-sm text-red-200">
@@ -56,37 +56,25 @@ const Composer = ({
             disabled={!isReady || isSending}
           />
 
-          <div className="composer-actions">
-            <label className="composer-system">
-              <span className="composer-system-label">System prompt</span>
-              <input
-                type="text"
-                value={systemPromptInput}
-                onChange={(event) => onSystemPromptChange(event.target.value)}
-                placeholder="Customize the assistant's persona"
-                className="composer-system-input"
-              />
-            </label>
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={onSend}
-                disabled={disableSend}
-                className={clsx(
-                  "composer-send",
-                  disableSend ? "composer-send--disabled" : "composer-send--active"
-                )}
-              >
-                {isSending ? (
-                  <>
-                    <LoadingIndicator />
-                    Sending…
-                  </>
-                ) : (
-                  "Send"
-                )}
-              </button>
-            </div>
+          <div className="composer-footer">
+            <button
+              type="button"
+              onClick={onSend}
+              disabled={disableSend}
+              className={clsx(
+                "composer-send",
+                disableSend ? "composer-send--disabled" : "composer-send--active"
+              )}
+            >
+              {isSending ? (
+                <>
+                  <LoadingIndicator />
+                  Sending…
+                </>
+              ) : (
+                "Send"
+              )}
+            </button>
           </div>
         </div>
       </div>
