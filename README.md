@@ -1,30 +1,57 @@
-# Ollama Web UI
+# GoopUI
 
-A minimalist web UI for interacting with Ollama, built as a Progressive Web App (PWA).
+GoopUI is a lightweight progressive web application for chatting with local [Ollama](https://ollama.com) models. It includes a FastAPI backend that proxies requests to the Ollama HTTP API and a React frontend with PWA support so you can install it on desktop and mobile devices.
 
-## Overview
+## Prerequisites
 
-This project aims to provide a simple and mobile-friendly interface for chatting with Ollama models hosted on your local server.  It's designed to be installed as a PWA, allowing for offline access and a native-like experience on mobile devices.
+- Python 3.11+
+- Node.js 18+
+- An Ollama instance running locally (defaults to `http://localhost:11434`)
 
-## Features
+## Backend setup
 
-*   **Chat Interface:** Clean and intuitive chat UI with distinct message bubbles.
-*   **Model Selection:** Easily select from available Ollama models.
-*   **PWA Support:** Installable as a PWA for offline access and mobile-friendly experience.
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env  # adjust values if necessary
+uvicorn app.main:app --reload --port 8000
+```
 
-## Technology Stack
+Environment variables:
 
-*   **Frontend:** React, TypeScript
-*   **Backend:** Python (FastAPI or Flask)
+- `OLLAMA_URL` – base URL of the Ollama API (defaults to `http://localhost:11434`)
+- `CORS_ALLOW_ORIGINS` – comma separated origins allowed to hit the backend (defaults to `http://localhost:5173,http://localhost:3000`)
 
-## Getting Started
+## Frontend setup
 
-(Instructions on how to set up and run the project would go here.  This would include details on installing dependencies, configuring the backend, and running the frontend.)
+```bash
+cd frontend
+npm install
+cp .env.example .env  # points the UI to the backend API
+npm run dev
+```
 
-## Contributing
+The development server runs on `http://localhost:5173`. The React app is configured with [`vite-plugin-pwa`](https://vite-plugin-pwa.netlify.app/) so running `npm run build` will generate the service worker and manifest; the dev server also registers the service worker for rapid feedback.
 
-(Information on how others can contribute to the project would go here.)
+## Connecting frontend and backend
 
-## License
+1. Start the backend (`uvicorn app.main:app --reload --port 8000`).
+2. Start the frontend (`npm run dev`).
+3. Visit `http://localhost:5173` in your browser. Select a model, optionally adjust the system prompt, and start chatting.
 
-(License information would go here.)
+Ensure Ollama is serving the requested model locally. The backend simply proxies to the Ollama API and surfaces any errors it encounters.
+
+## Project structure
+
+```
+backend/
+  app/
+    main.py         # FastAPI application with Ollama proxy endpoints
+  requirements.txt  # Backend dependencies
+frontend/
+  src/              # React application code
+  public/           # Static assets and PWA icons
+README.md           # Project overview and setup instructions
+```
