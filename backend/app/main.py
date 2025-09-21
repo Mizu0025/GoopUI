@@ -4,12 +4,12 @@ import os
 from typing import Any
 
 import httpx
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 DEFAULT_OLLAMA_URL = "http://localhost:11434"
-
 
 class ChatMessage(BaseModel):
     role: str = Field(description="Allowed roles: system, user, assistant")
@@ -35,6 +35,7 @@ class ChatResponseChunk(BaseModel):
 
 
 def create_app() -> FastAPI:
+    load_dotenv()
     ollama_url = os.getenv("OLLAMA_URL", DEFAULT_OLLAMA_URL)
 
     app = FastAPI(title="GoopUI Ollama Backend")

@@ -43,6 +43,15 @@ The development server runs on `http://localhost:5173`. The React app is configu
 
 Ensure Ollama is serving the requested model locally. The backend simply proxies to the Ollama API and surfaces any errors it encounters.
 
+The frontend stores conversation history in the browser's local storage so you can return to previous chats anytime on the same device. Use the sidebar to start fresh conversations, reopen past threads, delete individual chats, or clear the entire history.
+
+## Testing
+
+```bash
+cd frontend
+npm test
+```
+
 ## Project structure
 
 ```
