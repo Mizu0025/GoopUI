@@ -1,0 +1,335 @@
+.app-shell {
+  @apply relative min-h-screen bg-gradient-to-b from-blue-950 via-blue-950/95 to-indigo-950 text-blue-100;
+}
+
+.app-overlay {
+  @apply fixed inset-0 z-20 bg-blue-950/70 backdrop-blur-sm md:hidden;
+}
+
+.app-layout {
+  @apply mx-auto flex h-full w-full max-w-7xl flex-col md:flex-row;
+}
+
+.app-main {
+  @apply flex min-h-screen flex-1 flex-col;
+}
+
+.scroll-button-container {
+  @apply pointer-events-none absolute inset-x-0 bottom-40 flex justify-center md:bottom-32;
+}
+
+.scroll-button-inner {
+  @apply pointer-events-auto rounded-full bg-blue-950/40 p-2 shadow-lg shadow-blue-950/40 backdrop-blur;
+}
+
+.scroll-button {
+  @apply inline-flex items-center gap-2 rounded-full border border-sky-500/60 bg-blue-950/80 px-4 py-2 text-xs font-semibold text-sky-100 shadow-lg shadow-blue-950/50 transition hover:border-sky-300/70 hover:bg-blue-900;
+}
+
+.chat-scroll {
+  @apply flex-1 overflow-y-auto;
+}
+
+.chat-content {
+  @apply mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-10;
+}
+
+.system-prompt-card {
+  @apply rounded-3xl border border-blue-500/25 bg-blue-950/60 p-5 text-sm text-blue-100 shadow-lg shadow-blue-950/50;
+}
+
+.system-prompt-label {
+  @apply mb-2 text-xs uppercase tracking-wide text-blue-300;
+}
+
+.welcome-card {
+  @apply rounded-3xl border border-blue-500/25 bg-blue-950/60 p-10 text-center shadow-xl shadow-blue-950/50;
+}
+
+.welcome-banner {
+  @apply rounded-3xl border border-sky-500/40 bg-gradient-to-r from-sky-500/20 via-indigo-500/20 to-blue-500/20 p-8 text-left text-blue-50 md:text-center;
+}
+
+.welcome-title {
+  @apply text-3xl font-semibold;
+}
+
+.welcome-text {
+  @apply mt-3 text-base text-blue-100/90;
+}
+
+.welcome-media {
+  @apply mt-6 flex justify-center;
+}
+
+.welcome-image {
+  @apply w-full max-w-sm rounded-3xl border border-blue-500/30 bg-blue-950/40 p-4 shadow-lg shadow-blue-950/40;
+}
+
+.message-thread {
+  @apply flex items-start gap-3;
+}
+
+.assistant-avatar {
+  @apply mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/20 text-sm font-semibold text-sky-100;
+}
+
+.assistant-bubble {
+  @apply w-full rounded-3xl border border-sky-500/40 bg-blue-950/60 p-5 text-blue-50 shadow-xl shadow-sky-900/40;
+}
+
+.user-row {
+  @apply flex justify-end;
+}
+
+.user-bubble {
+  @apply max-w-full rounded-3xl border border-sky-200/40 bg-sky-100 px-5 py-5 text-right text-blue-950 shadow-lg shadow-blue-950/30 sm:max-w-xl;
+}
+
+.user-label {
+  @apply mb-3 text-xs font-semibold uppercase tracking-wide text-blue-600;
+}
+
+.message-paragraph {
+  @apply mb-3 whitespace-pre-wrap text-base leading-7 last:mb-0;
+}
+
+.typing-indicator {
+  @apply flex items-start gap-3 text-sm text-blue-200/80;
+}
+
+.typing-bubble {
+  @apply flex items-center gap-3 rounded-3xl border border-sky-500/30 bg-blue-950/50 px-5 py-4;
+}
+
+.sidebar {
+  @apply fixed inset-y-0 left-0 z-30 w-72 transform border-r border-blue-500/20 bg-blue-950/95 p-5 transition-transform duration-200 md:static md:block md:h-screen md:w-72 md:translate-x-0 md:bg-blue-950/30 md:p-6;
+}
+
+.sidebar-content {
+  @apply flex h-full flex-col;
+}
+
+.sidebar-header {
+  @apply flex items-center justify-between md:block;
+}
+
+.sidebar-title {
+  @apply text-lg font-semibold tracking-tight text-blue-100;
+}
+
+.sidebar-subtitle {
+  @apply text-xs text-blue-300/80;
+}
+
+.sidebar-dismiss {
+  @apply rounded-full border border-blue-500/30 bg-blue-950/70 px-3 py-1 text-xs text-blue-200 transition hover:border-blue-400/60 hover:text-blue-100 md:hidden;
+}
+
+.sidebar-button {
+  @apply mt-6 w-full rounded-2xl border border-sky-500/40 bg-sky-500/20 px-4 py-2 text-sm font-medium text-sky-100 transition hover:border-sky-300/60 hover:bg-sky-400/30;
+}
+
+.sidebar-clear {
+  @apply mt-3 w-full rounded-2xl border px-4 py-2 text-sm font-medium transition;
+}
+
+.sidebar-clear--enabled {
+  @apply border-blue-500/30 bg-blue-900/60 text-blue-100 hover:border-rose-400/60 hover:bg-rose-500/20 hover:text-rose-100;
+}
+
+.sidebar-clear--disabled {
+  @apply cursor-not-allowed border-blue-500/10 bg-blue-950/40 text-blue-500/50;
+}
+
+.thread-list {
+  @apply mt-6 flex-1 space-y-2 overflow-y-auto pr-1 text-sm text-blue-100;
+}
+
+.thread-empty {
+  @apply rounded-2xl border border-blue-500/20 bg-blue-950/60 px-4 py-6 text-center text-xs text-blue-300/80;
+}
+
+.thread-item {
+  @apply cursor-pointer rounded-2xl border px-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400;
+}
+
+.thread-item--active {
+  @apply border-sky-400/60 bg-sky-500/20 text-sky-50 shadow-lg shadow-sky-900/40;
+}
+
+.thread-item--inactive {
+  @apply border-blue-500/20 bg-blue-950/40 text-blue-100 hover:border-sky-400/40 hover:bg-blue-900/50;
+}
+
+.thread-title-row {
+  @apply flex items-center justify-between gap-2 text-sm font-medium text-blue-50;
+}
+
+.thread-delete {
+  @apply flex h-7 w-7 items-center justify-center rounded-full border border-blue-500/20 text-blue-300 transition hover:border-rose-400/60 hover:bg-rose-500/20 hover:text-rose-100 focus:outline-none focus:ring-2 focus:ring-rose-400/50;
+}
+
+.sidebar-settings {
+  @apply mt-6 rounded-3xl border border-blue-500/25 bg-blue-950/70 p-4 text-xs text-blue-200 shadow-lg shadow-blue-950/50;
+}
+
+.sidebar-settings-header {
+  @apply flex items-center justify-between;
+}
+
+.sidebar-settings-title {
+  @apply text-sm font-semibold text-blue-100;
+}
+
+.sidebar-settings-button {
+  @apply mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-blue-500/30 bg-transparent px-3 py-2 text-sm font-medium text-blue-200 transition hover:border-sky-400/60 hover:text-sky-100;
+}
+
+.header-bar {
+  @apply sticky top-0 z-10 border-b border-blue-500/25 bg-blue-950/80 backdrop-blur;
+}
+
+.header-inner {
+  @apply mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-4;
+}
+
+.header-group {
+  @apply flex items-center gap-3;
+}
+
+.header-history {
+  @apply rounded-full border border-blue-500/30 bg-blue-950/70 p-2 text-blue-200 transition hover:border-sky-400/40 hover:text-blue-100 md:hidden;
+}
+
+.header-brand {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.header-subtitle {
+  @apply text-xs text-blue-200/80;
+}
+
+.header-status {
+  @apply flex items-center gap-3 text-xs text-blue-200/80;
+}
+
+.header-select {
+  @apply flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-950/70 px-3 py-1 text-blue-100;
+}
+
+.header-select-label {
+  @apply text-[10px] uppercase tracking-wide text-blue-300;
+}
+
+.header-select-control {
+  @apply bg-transparent text-sm font-medium text-blue-100 outline-none disabled:text-blue-500/60;
+}
+
+.header-select-option {
+  @apply bg-blue-950 text-blue-100;
+}
+
+.composer-card {
+  @apply space-y-3 rounded-3xl border border-blue-500/25 bg-blue-950/60 p-4 shadow-xl shadow-blue-950/50;
+}
+
+.composer-textarea {
+  @apply w-full resize-none rounded-3xl border border-blue-500/25 bg-blue-950/70 px-5 py-4 text-sm text-blue-100 outline-none transition focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/30 disabled:opacity-50;
+}
+
+.composer-system {
+  @apply flex-1 rounded-2xl border border-blue-500/25 bg-blue-950/70 px-4 py-2 text-xs text-blue-200;
+}
+
+.composer-system-label {
+  @apply block text-xs uppercase tracking-wide text-blue-300;
+}
+
+.composer-system-input {
+  @apply mt-1 w-full bg-transparent text-sm text-blue-100 outline-none;
+}
+
+.composer-actions {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.composer-send {
+  @apply flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-semibold transition;
+}
+
+.composer-send--disabled {
+  @apply bg-blue-900 text-blue-500;
+}
+
+.composer-send--active {
+  @apply bg-sky-400 text-blue-950 hover:bg-sky-300;
+}
+
+.modal-backdrop {
+  @apply fixed inset-0 z-40 bg-blue-950/80 backdrop-blur-sm;
+}
+
+.modal-dialog {
+  @apply fixed inset-0 z-50 flex items-center justify-center px-4;
+}
+
+.modal-panel {
+  @apply w-full max-w-lg rounded-3xl border border-blue-500/30 bg-blue-950/95 p-6 text-blue-100 shadow-2xl shadow-blue-950/60;
+}
+
+.modal-header {
+  @apply flex items-start justify-between gap-4;
+}
+
+.modal-title {
+  @apply text-lg font-semibold text-blue-100;
+}
+
+.modal-close {
+  @apply rounded-full border border-blue-500/30 bg-blue-950/70 p-2 text-blue-200 transition hover:border-sky-400/60 hover:text-sky-100;
+}
+
+.modal-body {
+  @apply mt-4 space-y-5 text-sm text-blue-100;
+}
+
+.modal-field {
+  @apply text-left;
+}
+
+.modal-field-label {
+  @apply text-[10px] uppercase tracking-wide text-blue-300;
+}
+
+.modal-input {
+  @apply mt-1 w-full rounded-2xl border border-blue-500/30 bg-blue-950/60 px-3 py-2 text-sm text-blue-100 outline-none transition focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/30;
+}
+
+.modal-textarea {
+  @apply mt-1 w-full resize-none rounded-2xl border border-blue-500/30 bg-blue-950/60 px-3 py-2 text-sm text-blue-100 outline-none transition focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/30;
+}
+
+.modal-toggles {
+  @apply mt-2 space-y-3 text-[13px];
+}
+
+.modal-checkbox {
+  @apply flex items-center gap-3;
+}
+
+.modal-checkbox-input {
+  @apply h-4 w-4 rounded border-blue-500/60 bg-blue-950/80 text-sky-400 focus:ring-sky-400/40;
+}
+
+.modal-footer {
+  @apply mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end;
+}
+
+.modal-secondary {
+  @apply inline-flex items-center justify-center rounded-2xl border border-blue-500/30 px-4 py-2 text-sm font-medium text-blue-200 transition hover:border-sky-400/60 hover:text-sky-100;
+}
+
+.modal-primary {
+  @apply inline-flex items-center justify-center rounded-2xl bg-sky-400 px-4 py-2 text-sm font-semibold text-blue-950 transition hover:bg-sky-300;
+}

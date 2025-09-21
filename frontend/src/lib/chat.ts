@@ -64,3 +64,21 @@ export const createThread = ({
     updatedAt: updatedAt ?? timestamp,
   };
 };
+
+export const resolveThreadTitle = (thread: ChatThread): string => {
+  if (thread.title && thread.title.trim() && thread.title !== TITLE_FALLBACK) {
+    return thread.title;
+  }
+
+  const assistantFirst = thread.messages.find((message) => message.role === "assistant");
+  if (assistantFirst?.content.trim()) {
+    return buildTitleFromContent(assistantFirst.content);
+  }
+
+  const userFirst = thread.messages.find((message) => message.role === "user");
+  if (userFirst?.content.trim()) {
+    return buildTitleFromContent(userFirst.content);
+  }
+
+  return TITLE_FALLBACK;
+};
